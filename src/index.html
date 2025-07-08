@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather Forecast App</title>
-  <link href="style.css" rel="stylesheet" />
-</head>
-<body class="bg-blue-50 min-h-screen font-sans">
-  <div class="container mx-auto p-4">
-    <h1 class="text-3xl font-bold text-center mb-4">Weather Forecast</h1>
-    <!-- Weather content will go here -->
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast App</title>
+    <link href="output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-2xl bg-white p-6 rounded-2xl shadow-xl space-y-6">
+      <h1 class="text-3xl font-bold text-center text-blue-700">🌦 Weather Forecast</h1>
 
-  <script src="script.js"></script>
-</body>
+      <!-- Search Input -->
+      <div class="flex flex-col sm:flex-row gap-2 justify-center">
+        <input
+          id="cityInput"
+          type="text"
+          placeholder="Enter city name"
+          class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          onclick="getWeather()"
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Search
+        </button>
+      </div>
+
+      <!-- Use My Location Button -->
+      <div class="flex justify-center">
+        <button
+          onclick="getCurrentLocationWeather()"
+          class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+        >
+          📍 Use My Location
+        </button>
+      </div>
+
+      <!-- Recent Search Dropdown -->
+      <div id="recentSearchesContainer" class="hidden">
+        <label for="recentCities" class="block mb-1 text-sm text-gray-600">Recently searched:</label>
+        <select
+          id="recentCities"
+          class="w-full border px-3 py-2 rounded mb-4"
+          onchange="handleRecentCitySelection(this.value)"
+        ></select>
+      </div>
+
+      <!-- Current Weather -->
+      <div id="weatherResult" class="text-center space-y-2"></div>
+
+      <!-- 5-Day Forecast -->
+      <div id="forecast" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-4"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
